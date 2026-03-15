@@ -1,0 +1,21 @@
+workflows:
+  android-release:
+    name: Solar Monitor APK
+    max_build_duration: 60
+    environment:
+      flutter: 3.19.0
+      java: 17
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Build APK
+        script: flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+    publishing:
+      email:
+        recipients:
+          - your@email.com        # ← CHANGE THIS to your email
+        notify:
+          success: true
+          failure: true
